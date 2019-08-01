@@ -1,3 +1,8 @@
 body{
     background-color:lightgrey;
 }
+
+.task{
+    display: flex;
+    flex: row nowrap;
+}
