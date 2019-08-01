@@ -1,3 +1,3 @@
 # Completionist
 
-A simple to-do application created by Charlie Bignell
+This is a very simple to-do list application created with the sole purpose of getting used to Github.
