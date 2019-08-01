@@ -1,17 +1,35 @@
-html
-    head
-        title  ToDo App 
-        link(href='https://fonts.googleapis.com/css?family=Roboto:400', rel='stylesheet')
-        link(href='/styles.css', rel='stylesheet')
-    body
-        .container
-            h2  A Simple ToDo List App 
-            form(action='/addtask', method='POST')
-                input(type='text', name='newtask', placeholder='add new task')
-                button  Add Task 
-            h2  Added Task 
-            ul
-                each t in task
-                    li= t
-            button(formaction='/removetask', type='submit')  Remove 
-            h2  Completed task 
+block content
+	head
+		title Completionist
+	body
+		.container
+			h2 Completionist
+			form(action='addtask', method='POST')
+				input(type='text', name='newtask', placeholder='add new task')
+				button Add
+
+			h2 Tasks
+			#taskList_active
+				
+			h2 Completed  
+			#taskList_completed
+
+block append scripts
+	link(rel='stylesheet', href='/stylesheets/main.css')
+
+block append readyscripts
+	script.
+		const tasks_active = !{JSON.stringify(tasks)}
+		const tasks_complete = !{JSON.stringify(completed)}
+		
+		taskList_active = document.getElementById('taskList_active')
+		taskList_completed = document.getElementById('taskList_completed')
+
+		console.log(typeof tasks_active)
+		console.log(tasks_active)
+
+		tasks_active.forEach(function(task){
+			let task_el = document.createElement('p')
+			task_el.innerHTML = task
+			taskList_active.appendChild(task_el)
+		})
