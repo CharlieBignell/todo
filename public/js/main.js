@@ -22,15 +22,10 @@ allTasks.forEach(function(task){
     let task_el = document.createElement('div')
     task_el.classList.add('task')
 
-    // The task text
-    let p = document.createElement('p')
-    p.innerHTML = task.name
-
     // The 'complete' button
-    let b = document.createElement('button')
     let url = task.complete ? '/removeTask' : '/completeTask'
 
-    b.addEventListener('click', function (e) {
+    task_el.addEventListener('click', function (e) {
 
         // Send an XMLHTTP POST request with the task to complete
         let xhr = new XMLHttpRequest();
@@ -40,9 +35,18 @@ allTasks.forEach(function(task){
 
         location.reload()
     })
-    b.innerHTML = task.complete ? "Delete" : "Done"
 
-    task_el.appendChild(p)
-    task_el.appendChild(b)
+    let text = document.createElement('p')
+
+    text.innerHTML = task.name
+
+    if(task.complete){
+        text.classList.add('completedTask')
+    }else{
+        text.classList.add('activeTask')
+
+    }
+
+    task_el.appendChild(text)
     taskList_active.appendChild(task_el)
 })

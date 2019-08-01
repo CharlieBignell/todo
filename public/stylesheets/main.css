@@ -3,16 +3,39 @@ body{
     padding: 15px;
 }
 
-.task{
-    display: flex;
-    flex-flow: row nowrap;
-}
 
 #allTasks{
     background-color: lightgray;
     padding: 10px;
     width: min-content;
 }
+
+.task{
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 0;
+}
+
+.activeTask:hover, .completedTask:hover{
+    cursor: pointer;
+}
+
+.activeTask{
+    /* border: 1px solid green; */
+}
+
+.completedTask{
+    color: grey;
+    text-decoration: line-through;
+}
+
+.completedTask, .activeTask{
+    width: max-content;
+    padding: 2px 0;
+    margin: 5px 0;
+}
+
+
 
 #addForm{
     display: flex;
