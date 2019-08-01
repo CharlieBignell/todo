@@ -24,7 +24,11 @@ app.post("/completeTask", function (req, res) {
     let task = req.body.task
     completed.push(task);
     tasks.splice(tasks.indexOf(task), 1);
-    res.redirect("/");
+});
+
+app.post("/removeTask", function (req, res) {
+    let task = req.body.task
+    completed.splice(tasks.indexOf(task), 1);
 });
 
 

@@ -2,13 +2,12 @@ block content
 	head
 		title Completionist
 	body
-		.container
-			h2 Completionist
-			form(action='addTask', method='POST')
+		h1 Completionist
+		#allTasks
+			form#addForm(action='addTask', method='POST')
 				input(type='text', name='newtask', placeholder='add new task')
 				button Add
 
-			h2 Tasks
 			#taskList_active
 			#taskList_completed
 
@@ -16,10 +15,9 @@ block append readyscripts
 	script.
 		const tasks_active = !{ JSON.stringify(tasks) }
 		const tasks_complete = !{ JSON.stringify(completed) }
-		console.log("Tasks: " + tasks_active)
-		console.log("Completed: " + tasks_complete)
 
 
 block append scripts
+	link(href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet")
 	link(rel='stylesheet', href='/stylesheets/main.css')
 	script(type='application/javascript', src='/js/main.js')

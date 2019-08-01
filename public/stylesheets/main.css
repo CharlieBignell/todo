@@ -1,8 +1,21 @@
 body{
-    background-color:lightgrey;
+    font-family: 'Roboto', sans-serif;
+    padding: 15px;
 }
 
 .task{
     display: flex;
-    flex: row nowrap;
+    flex-flow: row nowrap;
+}
+
+#allTasks{
+    background-color: lightgray;
+    padding: 5px;
+    width: min-content;
+
+}
+
+#addForm{
+    display: flex;
+    flex-flow: row nowrap;
 }
