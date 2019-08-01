@@ -1,61 +1,48 @@
 // Get the two list elements
-taskList_active = document.getElementById('taskList_active')
-taskList_completed = document.getElementById('taskList_completed')
+let taskList_active = document.getElementById('taskList_active')
+let taskList_completed = document.getElementById('taskList_completed')
 
+let allTasks = []
 
-// For each active task
-tasks_active.forEach(function (task) {
+tasks_active.forEach(function(task){
+    allTasks.push({
+        name: task,
+        complete: false
+    })
+})
+
+tasks_complete.forEach(function(task){
+    allTasks.push({
+        name: task,
+        complete: true
+    })
+})
+
+allTasks.forEach(function(task){
     let task_el = document.createElement('div')
     task_el.classList.add('task')
 
     // The task text
     let p = document.createElement('p')
-    p.innerHTML = task
+    p.innerHTML = task.name
 
-    // The 'remove' button
+    // The 'complete' button
     let b = document.createElement('button')
+    let url = task.complete ? '/removeTask' : '/completeTask'
+
     b.addEventListener('click', function (e) {
 
-        // Send an XMLHTTP POST request with the task to remove
+        // Send an XMLHTTP POST request with the task to complete
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", '/completeTask', true)
+        xhr.open("POST", url, true)
         xhr.setRequestHeader('Content-Type', 'application/json')
-        xhr.send(JSON.stringify({ task: task }))
+        xhr.send(JSON.stringify({ task: task.name }))
 
         location.reload()
     })
-    b.innerHTML = "Done"
+    b.innerHTML = task.complete ? "Delete" : "Done"
 
     task_el.appendChild(p)
     task_el.appendChild(b)
     taskList_active.appendChild(task_el)
-})
-
-// For each of the completed tasks
-tasks_complete.forEach(function (task) {
-    let task_el = document.createElement('div')
-    task_el.classList.add('task')
-
-    // The task text
-    let p = document.createElement('p')
-    p.innerHTML = task
-
-    // The 'remove' button
-    let b = document.createElement('button')
-    b.addEventListener('click', function (e) {
-
-        // Send an XMLHTTP POST request with the task to remove
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", '/removeTask', true)
-        xhr.setRequestHeader('Content-Type', 'application/json')
-        xhr.send(JSON.stringify({ task: task }))
-
-        location.reload()
-    })
-    b.innerHTML = "Remove"
-
-    task_el.appendChild(p)
-    task_el.appendChild(b)
-    taskList_completed.appendChild(task_el)
-
 })
